@@ -243,6 +243,17 @@ class ContextHealthTests(unittest.TestCase):
         self.assertIn("taste_count_relation_invalid", relation["reasons"])
         self.assertEqual(relation["status"], UNKNOWN)
 
+    def test_imprint_selector_reasons_are_known(self):
+        source = imprint_fixture(
+            status="degraded",
+            reasons=["selector_key_unavailable", "selector_failures_repeated"],
+        )
+        component = build_health(source, None, None, OBSERVED, OBSERVED)["components"]["imprint"]
+        self.assertEqual(component["status"], DEGRADED)
+        self.assertIn("selector_key_unavailable", component["reasons"])
+        self.assertIn("selector_failures_repeated", component["reasons"])
+        self.assertNotIn("imprint_reason_unknown", component["reasons"])
+
     def test_imprint_allowlist_degraded_and_capture_age(self):
         source = imprint_fixture(
             status="healthy",

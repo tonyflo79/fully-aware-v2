@@ -74,6 +74,9 @@ IMPRINT_REASON_CODES = frozenset({
     "abandoned_temp_present",
     "backup_unverified",
     "experimental_loop_stalled",
+    # Imprint N28 (PR #40, ec5fc59): a dead Jev selector is a fault.
+    "selector_key_unavailable",
+    "selector_failures_repeated",
 })
 
 IMPRINT_COUNT_FIELDS = (

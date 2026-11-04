@@ -15,8 +15,9 @@ concurrency:
 
 jobs:
   tests:
-    # Org standard runner; fall back to ubuntu-latest if Blacksmith doesn't pick the job up.
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    # GitHub-hosted runner. The repo now lives on a personal account, where the
+    # org's Blacksmith runners never pick the job up (it queues 24h, then cancels).
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
