@@ -254,6 +254,25 @@ class ContextHealthTests(unittest.TestCase):
         self.assertIn("selector_failures_repeated", component["reasons"])
         self.assertNotIn("imprint_reason_unknown", component["reasons"])
 
+    def test_imprint_release1_capture_reasons_are_known(self):
+        reasons = [
+            "t3_record_unavailable",
+            "t3_entrypoint_unknown",
+            "t3_marked_window",
+            "t3_session_ref_unreadable",
+            "transcript_malformed",
+            "transcript_refused",
+            "capture_silent",
+        ]
+        for reason in reasons:
+            with self.subTest(reason=reason):
+                source = imprint_fixture(status="degraded", reasons=[reason])
+                component = build_health(source, None, None, OBSERVED, OBSERVED)["components"]["imprint"]
+                self.assertEqual(component["status"], DEGRADED)
+                self.assertEqual(component["availability"], "available")
+                self.assertIn(reason, component["reasons"])
+                self.assertNotIn("imprint_reason_unknown", component["reasons"])
+
     def test_imprint_allowlist_degraded_and_capture_age(self):
         source = imprint_fixture(
             status="healthy",

@@ -77,6 +77,16 @@ IMPRINT_REASON_CODES = frozenset({
     # Imprint N28 (PR #40, ec5fc59): a dead Jev selector is a fault.
     "selector_key_unavailable",
     "selector_failures_repeated",
+    # Capture faults the deep report already names (t3_entrypoint_unknown is new
+    # in Imprint release 1, PR #45, c1d99a2).
+    "t3_record_unavailable",
+    "t3_entrypoint_unknown",
+    "t3_marked_window",
+    "t3_session_ref_unreadable",
+    "transcript_malformed",
+    "transcript_refused",
+    # Imprint release 1: raised only when org.imprint.health.capture_silence_days is set.
+    "capture_silent",
 })
 
 IMPRINT_COUNT_FIELDS = (
