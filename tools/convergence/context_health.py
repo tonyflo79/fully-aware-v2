@@ -92,6 +92,12 @@ IMPRINT_REASON_CODES = frozenset({
     # than that; capture_writer_stalled only when the capture writer is scheduled.
     "review_queue_stale",
     "capture_writer_stalled",
+    # Imprint release 2, the Codex reader (PR #49, a6d3c1f). Both are raised only when
+    # org.imprint.capture.codex_reader is "queue": codex_reader_fault when its last run
+    # ended on a fault or three runs in a row found Codex's files busy,
+    # codex_reader_stalled when no run has finished for a day.
+    "codex_reader_fault",
+    "codex_reader_stalled",
 })
 
 IMPRINT_COUNT_FIELDS = (
