@@ -87,6 +87,11 @@ IMPRINT_REASON_CODES = frozenset({
     "transcript_refused",
     # Imprint release 1: raised only when org.imprint.health.capture_silence_days is set.
     "capture_silent",
+    # Imprint release 2 (PR #48, 1d7a856). review_queue_stale is raised only when
+    # org.imprint.health.review_queue_days is set and an unreviewed capture is older
+    # than that; capture_writer_stalled only when the capture writer is scheduled.
+    "review_queue_stale",
+    "capture_writer_stalled",
 })
 
 IMPRINT_COUNT_FIELDS = (
